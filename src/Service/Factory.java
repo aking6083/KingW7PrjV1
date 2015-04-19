@@ -23,4 +23,9 @@ public class Factory {
         return new BookSvcJDBCImpl();
     }
     
+    public AuthenticationSVCSocketImpl getSocketAuthService()
+    {
+        return new AuthenticationSVCSocketImpl();
+    }
+    
 }
