@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Login implements Serializable {
     private String userName;
     private char [] password;
-    
+        
     public void setUserName (String userName)
     { this.userName = userName;}
     

@@ -15,22 +15,26 @@ import java.net.*;
  * @author root
  */
 public class AuthenticationMgr {
-    Socket socket = null;
-    ObjectInputStream in = null;
-    ObjectOutputStream out = null;
+    
     
     
     public boolean authenticate(Login myLogin) throws Exception
     {
+        Socket socket = null;
+        ObjectInputStream in = null;
+        ObjectOutputStream out = null;
         try 
         {
             socket = new Socket(InetAddress.getLocalHost(), 8000);
-            AuthenticationSVCSocketImpl newAuthSvc = new AuthenticationSVCSocketImpl();
-            Factory authFactory = new Factory();
-            newAuthSvc = authFactory.getSocketAuthService();
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+            //AuthenticationSVCSocketImpl newAuthSvc = new AuthenticationSVCSocketImpl();
+            //Factory authFactory = new Factory();
+            //newAuthSvc = authFactory.getSocketAuthService();
+            
+            out = new ObjectOutputStream(socket.getOutputStream());
+            in = new ObjectInputStream(socket.getInputStream());
+            
             out.writeObject((Login)myLogin);
+            boolean isReal = in.readBoolean();
             
             //System.out.println(authentic);
             
