@@ -8,6 +8,7 @@ import Business.AuthenticationMgr;
 import Service.*;
 import domain.*;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -159,12 +160,16 @@ public class LibraryLoginGUI extends javax.swing.JFrame {
         if (newLogin.validate())
         {
             try {
-                AuthenticationMgr authMgr = new AuthenticationMgr();
-                boolean temp = authMgr.authenticate(newLogin);
-                System.out.println(temp);
+                AuthenticationSVCSocketImpl newAuthSvc = new AuthenticationSVCSocketImpl();
+                Factory authFactory = new Factory();
+                newAuthSvc = authFactory.getSocketAuthService();
+                boolean tempB = newAuthSvc.authenticate(newLogin);
+                System.out.println(tempB);
+                 
+                //AuthenticationMgr authMgr = new AuthenticationMgr();
+                //boolean temp = authMgr.authenticate(newLogin);
+                //System.out.println(temp);
                 
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }

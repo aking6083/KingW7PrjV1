@@ -20,23 +20,23 @@ public class AuthenticationMgr {
     
     public boolean authenticate(Login myLogin) throws Exception
     {
+        boolean isReal = false;
         Socket socket = null;
         ObjectInputStream in = null;
         ObjectOutputStream out = null;
         try 
         {
             socket = new Socket(InetAddress.getLocalHost(), 8000);
-            //AuthenticationSVCSocketImpl newAuthSvc = new AuthenticationSVCSocketImpl();
-            //Factory authFactory = new Factory();
-            //newAuthSvc = authFactory.getSocketAuthService();
-            
+            /*AuthenticationSVCSocketImpl newAuthSvc = new AuthenticationSVCSocketImpl();
+            Factory authFactory = new Factory();
+            newAuthSvc = authFactory.getSocketAuthService();
+            newAuthSvc.authenticate(myLogin);*/
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
-            
             out.writeObject((Login)myLogin);
-            boolean isReal = in.readBoolean();
+            isReal = in.readBoolean();
             
-            //System.out.println(authentic);
+            System.out.println(isReal);
             
         }
         catch (Exception ioe)
@@ -44,6 +44,6 @@ public class AuthenticationMgr {
             System.out.println(ioe.getMessage());
             return false;
         }
-        return true;
+        return isReal;
     }
 }
