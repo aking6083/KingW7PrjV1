@@ -163,6 +163,7 @@ public class LibraryLoginGUI extends javax.swing.JFrame {
                 AuthenticationSVCSocketImpl newAuthSvc = new AuthenticationSVCSocketImpl();
                 Factory authFactory = new Factory();
                 newAuthSvc = authFactory.getSocketAuthService();
+                
                 boolean tempB = newAuthSvc.authenticate(newLogin);
                 System.out.println(tempB);
                  
