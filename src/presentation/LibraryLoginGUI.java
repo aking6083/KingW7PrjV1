@@ -160,16 +160,8 @@ public class LibraryLoginGUI extends javax.swing.JFrame {
         if (newLogin.validate())
         {
             try {
-                AuthenticationSVCSocketImpl newAuthSvc = new AuthenticationSVCSocketImpl();
-                Factory authFactory = new Factory();
-                newAuthSvc = authFactory.getSocketAuthService();
-                
-                boolean tempB = newAuthSvc.authenticate(newLogin);
-                System.out.println(tempB);
-                 
-                //AuthenticationMgr authMgr = new AuthenticationMgr();
-                //boolean temp = authMgr.authenticate(newLogin);
-                //System.out.println(temp);
+                AuthenticationMgr authMgr = new AuthenticationMgr();
+                boolean authenticated = authMgr.authenticate(newLogin);
                 
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
